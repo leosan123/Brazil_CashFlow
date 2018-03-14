@@ -4,8 +4,28 @@
 <xsl:template match="/">	
 	<xsl:variable name = "v_initiation"><xsl:value-of select="<xbrl  xmlns='http://www.xbrl.org/2003/instance' xmlns:link = 'http://www.xbrl.org/2003/linkbase' xmlns:xlink = 'http://www.w3.org/1999/xlink'>"/></xsl:variable>
 	<xsl:variable name = "v_declarations"><xsl:value-of select="<link:schemaRef xlink:type='simple' xlink:href='Regras_FL_Caixa.xsd'/> <unit id='U-Monetary'><measure>iso4217:USD</measure></unit>"/></xsl:variable>
-<xsl:value-of select="$v_initiation"/>
+<xsl:value-of select="$v_initiation"/>	
 <!-- initialing xbrl -->
+	
+<!-- context tags 
+   <context id='zzz'>
+      <entity>
+         <identifier scheme='http://www.zyw.com'>zyw</identifier>
+      </entity>
+      <period>
+         <instant>2018-01-31</instant>
+      </period>
+   </context>
+   <context id='yyy'>
+      <entity>
+         <identifier scheme='http://www.zop.com'>zop</identifier>
+      </entity>
+      <period>
+         <instant>2018-02-03</instant>
+      </period>
+   </context>
+-->
+	
 <xsl:value-of select="$v_declarations"/>
 <!-- namespace, declarations, units -->
 <DataRecords>
