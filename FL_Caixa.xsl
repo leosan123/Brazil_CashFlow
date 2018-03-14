@@ -3,19 +3,25 @@
 <xsl:output method="xml" indent ="yes"/>
 <xsl:template match="/">
 <xsl:variable name = "v_Lista">
-<Arq>
-	<xsl:for-each select = "zzz/Registro">
-		<Reg> 
-			<Data><xsl:value-of select="@period"/></Data>
-		</Reg>
+<xbrl  xmlns='http://www.xbrl.org/2003/instance' xmlns:link = 'http://www.xbrl.org/2003/linkbase' xmlns:xlink = 'http://www.w3.org/1999/xlink'>
+   <!-- namespace, declarations, units -->
+   <link:schemaRef xlink:type='simple' xlink:href='Regras_FL_Caixa.xsd'/>
+   <unit id='U-Monetary'><measure>iso4217:USD</measure></unit>
+	<xsl:for-each select = "Arq/Registro">
+		<xsl:variable name = "v_period"><xsl:value-of select="@period"/></xsl:variable>
+		<xsl:for-each select = "Assunto">
+			<xsl:variable name = "v_subject"><xsl:value-of select="strAssunto"/></xsl:variable>
+			<xsl:for-each select = "Fonte">
+<Cash_Flow> 
+<dtDate><xsl:value-of select="$v_period"/></dtDate>
+<strSubject><xsl:value-of select="$v_subject"/></strSubject>
+<intOrigin><xsl:value-of select="intFonte"/></intOrigin>
+<curValue unitRef='U-Monetary' decimals='INF'><xsl:value-of select="curValor"/></curValue>
+</Cash_Flow> 
+			</xsl:for-each>
+		</xsl:for-each>
 	</xsl:for-each>
-</Arq>
-</xsl:variable>
- <xsl:variable name ="ordena" select ="msxsl:node-set($v_Lista)"/>
- <Fl_caixa>
-   <xsl:for-each select = "$ordena/Arq/Reg">    
-      <xsl:copy-of select="."/>      
-  </xsl:for-each>
  </Fl_caixa>  
+</xbrl>
 </xsl:template> 
 </xsl:stylesheet>  
