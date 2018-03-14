@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Data e hora da criacao: 27/02/2018 12:55:16 -->
+<schema  xmlns='http://www.w3.org/2001/XMLSchema'
+         xmlns:xbrli='http://www.xbrl.org/2003/instance'
+         xmlns:link='http://www.xbrl.org/2003/linkbase'
+         xmlns:xlink='http://www.w3.org/1999/xlink'
+         xmlns:FL_Caixa='http://xbrl.squarespace.com/HelloWorld'
+         targetNamespace='http://xbrl.squarespace.com/HelloWorld'
+         elementFormDefault='qualified'
+         attributeFormDefault='unqualified'>
+
+   <import
+      namespace='http://www.xbrl.org/2003/instance'
+      schemaLocation='http://www.xbrl.org/2003/xbrl-instance-2003-12-31.xsd' />
+
+
+   <!-- Grupo Fonte -->
+   <ComplexType name='tFonte'>
+     <element  name='intFonte' type='xbrli:integerItemType'/>
+     <element  name='curValor' type='xbrli:monetaryItemType' substitutionGroup='xbrli:item'/>
+   </ComplexType>
+
+   <!-- Sequencia Assunto -->
+   <ComplexType name='tAssunto'>
+     <xbrli:sequence>
+         <xbrli:element name='Assunto' type='xbrli:stringItemType'/>
+         <xbrli:element name='Fonte' type='xbrli:tFonte'/>
+      </xbrli:sequence>
+   </ComplexType>
+
+   <!-- Sequencia Registros por data -->
+   <ComplexType name='tRegistro' xbrli:periodType='instant'>
+      <xbrli:sequence>
+         <xbrli:element name='Assunto' type='xbrli:tAssunto'/>
+      </xbrli:sequence>
+   </ComplexType>
+   <xbrli:element name='Registro' type='xbrli:tRegistro' />
+</schema>
