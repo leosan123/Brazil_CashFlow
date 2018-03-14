@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Data e hora criacao: 07/03/2018 18:57:14 -->
-<xbrl  xmlns='http://www.xbrl.org/2003/instance'
-       xmlns:link = 'http://www.xbrl.org/2003/linkbase'
-       xmlns:xlink = 'http://www.w3.org/1999/xlink'
-       >
-   <!-- namespace, declarations, units -->
-   <link:schemaRef xlink:type='simple' xlink:href='Regras_FL_Caixa.xsd' />
-   <unit id='U-Monetary'><measure>iso4217:USD</measure></unit>
-
+<Arq>
    <!-- Rol de valores -->
 <Registro period='2017-12-31'>
  <Assunto>
@@ -13785,4 +13778,4 @@
    </Fonte>
  </Assunto>
 </Registro>
-</xbrl>
+</Arq>
