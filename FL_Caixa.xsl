@@ -8,7 +8,7 @@
 <!-- initialing xbrl -->
 <xsl:value-of select="$v_declarations"/>
 <!-- namespace, declarations, units -->
-<datarecords>
+<DataRecords>
 	<xsl:for-each select = "Arq/Registro">
 		<xsl:variable name = "v_period"><xsl:value-of select="@period"/></xsl:variable>
 		<xsl:for-each select = "Assunto">
@@ -16,31 +16,21 @@
 <Cash_Flow> 
 <dtDate><xsl:value-of select="$v_period"/></dtDate>
 <strSubject><xsl:value-of select="$v_subject"/></strSubject>
-			<xsl:choose>
-				<xsl:when test="./intFonte = 1">
-<curOrigin1 unitRef='U-Monetary' decimals='INF'><xsl:value-of select="curValor"/></curOrigin1>
-				</xsl:when>
-				<xsl:when test="./intFonte = 2">
-<curOrigin2 unitRef='U-Monetary' decimals='INF'><xsl:value-of select="curValor"/></curOrigin2>
-				</xsl:when>
-				<xsl:when test="./intFonte = 3">
-<curOrigin3 unitRef='U-Monetary' decimals='INF'><xsl:value-of select="curValor"/></curOrigin3>
-				</xsl:when>
-				<xsl:when test="./intFonte = 5">
-<curOrigin5 unitRef='U-Monetary' decimals='INF'><xsl:value-of select="curValor"/></curOrigin5>
-				</xsl:when>
-				<xsl:when test="./intFonte = 6">
-<curOrigin6 unitRef='U-Monetary' decimals='INF'><xsl:value-of select="curValor"/></curOrigin6>
-				</xsl:when>
-				<xsl:when test="./intFonte = 7">
-<curOrigin7 unitRef='U-Monetary' decimals='INF'><xsl:value-of select="curValor"/></curOrigin7>
-				</xsl:when>
-			</xsl:choose>	
-</Cash_Flow> 
+			<xsl:for-each select = "Fonte">
+				<xsl:choose>
+<xsl:when test="./intFonte = 1"><curOrigin1 unitRef='U-Monetary' decimals='INF'><xsl:value-of select="curValor"/></curOrigin1></xsl:when>
+<xsl:when test="./intFonte = 2"><curOrigin2 unitRef='U-Monetary' decimals='INF'><xsl:value-of select="curValor"/></curOrigin2></xsl:when>
+<xsl:when test="./intFonte = 3"><curOrigin3 unitRef='U-Monetary' decimals='INF'><xsl:value-of select="curValor"/></curOrigin3></xsl:when>
+<xsl:when test="./intFonte = 5"><curOrigin5 unitRef='U-Monetary' decimals='INF'><xsl:value-of select="curValor"/></curOrigin5></xsl:when>
+<xsl:when test="./intFonte = 6"><curOrigin6 unitRef='U-Monetary' decimals='INF'><xsl:value-of select="curValor"/></curOrigin6></xsl:when>
+<xsl:when test="./intFonte = 7"><curOrigin7 unitRef='U-Monetary' decimals='INF'><xsl:value-of select="curValor"/></curOrigin7></xsl:when>
+<xsl:otherwise></xsl:otherwise>
+				</xsl:choose>	
 			</xsl:for-each>
+</Cash_Flow> 			
 		</xsl:for-each>
 	</xsl:for-each>
-</datarecords>
+</DataRecords>
 </xbrl>
 </xsl:template> 
 </xsl:stylesheet>  
